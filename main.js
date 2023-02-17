@@ -1,6 +1,6 @@
 const gameBoard = (() => {
     let gameBoardObject = [
-        'x', 
+        '', 
         'x', 
         'x', 
         'o', 
@@ -30,6 +30,7 @@ const gameBoard = (() => {
     }
     return {
         gameBoardObject,
+        displayGameBoard
     }
 })();
 
@@ -42,3 +43,13 @@ const Player = (name, symbol) => {
     }
 }
 
+const playGame = (() => {
+    gameBoard.displayGameBoard();
+    let board = document.querySelectorAll('div.box')
+    console.log(board)
+    board.forEach(div => {
+        div.addEventListener('click', () => {
+            div.textContent = 'TEST'
+        })
+    })
+})();
