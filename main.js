@@ -20,6 +20,7 @@ const gameBoard = (() => {
         for (i = 0; i <= gameBoardObject.length; i++) {
             let container = document.querySelector('.game-board')
             let div = document.createElement('div')
+            div.classList.add('box')
             container.appendChild(div)
             div.textContent = [gameBoardObject[i]]
             div.addEventListener('click', () => {
