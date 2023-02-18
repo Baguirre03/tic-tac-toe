@@ -20,8 +20,8 @@ const playGame = () => {
     let playerOneSym = document.getElementById('symbol1').value
     let playerOne = Players(playerOneName, playerOneSym);
 
-    let playerTwoName = document.getElementById('player1').value
-    let playerTwoSym = document.getElementById('symbol1').value
+    let playerTwoName = document.getElementById('player2').value
+    let playerTwoSym = document.getElementById('symbol2').value
     let playerTwo = Players(playerTwoName, playerTwoSym);
 
     const placeSpot = (player, spot, div) => {
@@ -36,8 +36,14 @@ const playGame = () => {
     let board = document.querySelectorAll('div.box')
     board.forEach(div => {
         div.addEventListener('click', () => {
-            placeSpot(playerOne, div.dataset.boxNumber, div)
-        })
+            if (playerOneTurn == 0) {
+                placeSpot(playerOne, div.dataset.boxNumber, div)
+                playerOneTurn++
+                console.log(playerOneTurn)
+            } else if (playerOneTurn == 1) {
+                placeSpot(playerTwo, div.dataset.boxNumber, div)
+                playerTwoTurn++
+        }})
     });
     return {}
 };
