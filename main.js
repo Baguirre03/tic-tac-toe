@@ -1,15 +1,5 @@
 const gameBoard = (() => {
-    let gameBoardObject = [
-        '', 
-        '', 
-        '', 
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
-    ]
+    let gameBoardObject = ['', '', '', '', '', '', '', '', '',]
     return {
         gameBoardObject,
     }
@@ -25,44 +15,55 @@ const Players = (name, symbol) => {
     }
 }
 
-const playGame = (() => {
+const playGame = () => {
+    let playerOneName = document.getElementById('player1').value
+    let playerOneSym = document.getElementById('symbol1').value
+    let playerOne = Players(playerOneName, playerOneSym);
 
+    let playerTwoName = document.getElementById('player1').value
+    let playerTwoSym = document.getElementById('symbol1').value
+    let playerTwo = Players(playerTwoName, playerTwoSym);
 
+    const placeSpot = (player, spot, div) => {
+        let symbol = player.getSymbol();
+        div.textContent = symbol
+        gameBoard.gameBoardObject[spot] = symbol
+    }
+
+    let playerOneTurn = 0
+    let playerTwoTurn = 0
+
+    let board = document.querySelectorAll('div.box')
+    board.forEach(div => {
+        div.addEventListener('click', () => {
+        })
+    });
+    return {}
+};
+
+const displayGame = (() => {
     let boardContainer = document.querySelector('.game-board')
-
     const displayGameBoard = () => {
-        clearGameBoardObject();
         clearGameBoard();
-
-        let playerOneName = document.getElementById('player1').value
-        let playerOneSym = document.getElementById('symbol1').value
-        let playerOne = Players(playerOneName, playerOneSym);
-        
-        let playerTwoName = document.getElementById('player1').value
-        let playerTwoSym = document.getElementById('symbol1').value
-        let playerTwo = Players(playerTwoName, playerTwoSym);
-
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
             div.classList.add('box')
             boardContainer.appendChild(div)
-
-            div.addEventListener('click', () => {
-                div.textContent = playerOne.getSymbol();
-                placeSpot(playerOne, div.dataset.boxNumber)
-            })
         }
     }
 
     let displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
         displayGameBoard();
+        playGame();
     })
 
     let clearGameBtn = document.querySelector('#restart-btn')
     clearGameBtn.addEventListener('click', () => {
-        displayGameBoard();        
+        clearGameBoardObject();
+        displayGameBoard(); 
+        playGame();       
     })
 
     const clearGameBoard = () => {
@@ -74,10 +75,4 @@ const playGame = (() => {
     const clearGameBoardObject = () => {
         gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
     }
-    
-    const placeSpot = (player, spot) => {
-        let symbol = player.getSymbol();
-        gameBoard.gameBoardObject[spot] = symbol
-    }
-    return {  }
 })();
