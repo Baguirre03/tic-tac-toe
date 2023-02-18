@@ -32,19 +32,23 @@ const playGame = () => {
 
     let playerOneTurn = 0
     let playerTwoTurn = 0
+    let turnCount = 0 
 
     let board = document.querySelectorAll('div.box')
     board.forEach(div => {
         div.addEventListener('click', () => {
-            if (playerOneTurn == 0) {
+            if (playerTwoTurn < 1) {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
-                playerOneTurn++
-                console.log(playerOneTurn)
-            } else if (playerOneTurn == 1) {
-                placeSpot(playerTwo, div.dataset.boxNumber, div)
                 playerTwoTurn++
-        }})
+                checkWinner()
+            } else {
+                placeSpot(playerTwo, div.dataset.boxNumber, div)
+                checkWinner()
+            }
+        })
     });
+    let checkWinner = () => {
+        }
     return {}
 };
 
@@ -55,6 +59,7 @@ const displayGame = (() => {
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
+            // div.textContent = i;
             div.classList.add('box')
             boardContainer.appendChild(div)
         }
