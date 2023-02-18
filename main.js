@@ -36,6 +36,7 @@ const playGame = () => {
     let board = document.querySelectorAll('div.box')
     board.forEach(div => {
         div.addEventListener('click', () => {
+            placeSpot(playerOne, div.dataset.boxNumber, div)
         })
     });
     return {}
