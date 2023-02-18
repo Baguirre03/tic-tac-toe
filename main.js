@@ -18,6 +18,7 @@ const gameBoard = (() => {
 const Players = (name, symbol) => {
     const getName = () => name
     const getSymbol = () => symbol
+
     return {
         getName, 
         getSymbol
@@ -26,34 +27,32 @@ const Players = (name, symbol) => {
 
 const playGame = (() => {
     let boardContainer = document.querySelector('.game-board')
-    let clearGameBtn = document.querySelector('.restart-btn')
-    let playerOneName = document.querySelector('#player1').value
-    let playerTwoName = document.querySelector('#player2').value
-    let playerOneSym = document.querySelector('#symbol1').value
-    let playerTwoSym = document.querySelector('#symbol1').value
 
     const displayGameBoard = () => {
-        let player1 = Players(playerOneName, playerOneSym)
-        let player2 = Players(playerTwoName, playerTwoSym)
+        clearGameBoardObject();
+        clearGameBoard();
 
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
             div.classList.add('box')
             boardContainer.appendChild(div)
-        //adds player1 
+
             div.addEventListener('click', () => {
-                div.textContent = player1.getSymbol();
-                placeSpot(player1, div.dataset.boxNumber)
+                div.textContent = playerOne.getSymbol();
+                placeSpot(playerOne, div.dataset.boxNumber)
             })
         }
     }
 
     let displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
-        clearGameBoardObject();
-        clearGameBoard();
         displayGameBoard();
+    })
+
+    let clearGameBtn = document.querySelector('#restart-btn')
+    clearGameBtn.addEventListener('click', () => {
+        displayGameBoard();        
     })
 
     const clearGameBoard = () => {
@@ -67,9 +66,10 @@ const playGame = (() => {
     }
     
     const placeSpot = (player, spot) => {
+        console.log(player.getName())
+        console.log(player.getSymbol())
         let symbol = player.getSymbol();
         gameBoard.gameBoardObject[spot] = symbol
-        console.log(gameBoard.gameBoardObject)
     }
-    return {    }
+    return {  }
 })();
