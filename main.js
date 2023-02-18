@@ -10,28 +10,12 @@ const gameBoard = (() => {
         '',
         '',
     ]
-
-    let displayBtn = document.querySelector('#display-btn')
-    displayBtn.addEventListener('click', () => {
-        displayGameBoard();
-    })
-
-    const displayGameBoard = () => {
-        for (i = 0; i < gameBoardObject.length; i++) {
-            let container = document.querySelector('.game-board')
-            let div = document.createElement('div')
-            div.dataset.boxNumber = i;
-            div.classList.add('box')
-            container.appendChild(div)
-        }
-    }
     return {
         gameBoardObject,
-        displayGameBoard
     }
 })();
 
-const Player = (name, symbol) => {
+const Players = (name, symbol) => {
     const getName = () => name
     const getSymbol = () => symbol
     return {
@@ -41,12 +25,32 @@ const Player = (name, symbol) => {
 }
 
 const playGame = (() => {
-    gameBoard.displayGameBoard();
-    let board = document.querySelectorAll('div.box')
-    console.log(board)
-    board.forEach(div => {
-        div.addEventListener('click', () => {
-            div.textContent = div.dataset.boxNumber
-        })
+    let player1 = Players('player1', 'x')
+    let player2 = Players('player2', 'y')
+    let boardContainer = document.querySelector('.game-board')
+
+    let displayBtn = document.querySelector('#display-btn')
+    displayBtn.addEventListener('click', () => {
+        clearGameBoard();
+        displayGameBoard();
+        displayBtn.textContent = 'Restart Game'
     })
+    const clearGameBoard = () => {
+        while (boardContainer.firstChild) {
+            boardContainer.removeChild(boardContainer.firstChild)
+        }
+    }
+
+    const displayGameBoard = () => {
+        for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
+            let div = document.createElement('div')
+            div.dataset.boxNumber = i;
+            div.classList.add('box')
+            boardContainer.appendChild(div)
+
+            div.addEventListener('click', () => {
+                div.textContent = player1.getSymbol();
+            })
+        }
+    }
 })();
