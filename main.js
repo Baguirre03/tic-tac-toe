@@ -26,11 +26,21 @@ const Players = (name, symbol) => {
 }
 
 const playGame = (() => {
+
+
     let boardContainer = document.querySelector('.game-board')
 
     const displayGameBoard = () => {
         clearGameBoardObject();
         clearGameBoard();
+
+        let playerOneName = document.getElementById('player1').value
+        let playerOneSym = document.getElementById('symbol1').value
+        let playerOne = Players(playerOneName, playerOneSym);
+        
+        let playerTwoName = document.getElementById('player1').value
+        let playerTwoSym = document.getElementById('symbol1').value
+        let playerTwo = Players(playerTwoName, playerTwoSym);
 
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
@@ -66,8 +76,6 @@ const playGame = (() => {
     }
     
     const placeSpot = (player, spot) => {
-        console.log(player.getName())
-        console.log(player.getSymbol())
         let symbol = player.getSymbol();
         gameBoard.gameBoardObject[spot] = symbol
     }
