@@ -61,20 +61,18 @@ const playGame = () => {
             [getLocation(0), getLocation(4), getLocation(8)],
             [getLocation(2), getLocation(4), getLocation(6)],
         ]
-        let checkX = JSON.stringify(['X', 'X', 'X'])
-        let checkO = JSON.stringify(['O', 'O', 'O'])
+        
+        let checkX = (['X', 'X', 'X']).toString();
+        let checkO = (['O', 'O', 'O']).toString();
 
         for (const property in winnerCombs) {
-            if (JSON.stringify(winnerCombs[property]) === checkX) {
+            if (winnerCombs[property].toString() === checkX) {
                 console.log('winner player 1')
-            } else if (JSON.stringify(winnerCombs[property]) === checkO) {
+            } else if (winnerCombs[property].toString() === checkO) {
                 console.log('winner PLayer 2')
             }
         }
-
-
     }   
-
     return {}
 };
 
