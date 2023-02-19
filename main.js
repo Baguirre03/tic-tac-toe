@@ -30,25 +30,31 @@ const playGame = () => {
         gameBoard.gameBoardObject[spot] = symbol
     }
 
-    let playerOneTurn = 0
-    let playerTwoTurn = 0
-    let turnCount = 0 
+    let inPlay = playerOne.getName();
+    console.log(inPlay)
 
     let board = document.querySelectorAll('div.box')
     board.forEach(div => {
         div.addEventListener('click', () => {
-            if (playerTwoTurn < 1) {
+            console.log(inPlay)
+            if (inPlay === playerOne.getName()) {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
-                playerTwoTurn++
-                checkWinner()
+                inPlay = playerTwo.getName();
             } else {
                 placeSpot(playerTwo, div.dataset.boxNumber, div)
-                checkWinner()
+                inPlay = playerOne.getName();
             }
         })
     });
     let checkWinner = () => {
-        }
+        let winnerCombs = [               
+            [0, 1, 2],
+            [3,4,5],
+            [6,7,8]
+        ]
+        let newArray = gameBoard.gameBoardObject.map(x => x)
+        console.log(newArray)
+    }
     return {}
 };
 
