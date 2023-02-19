@@ -24,37 +24,57 @@ const playGame = () => {
     let playerTwoSym = document.getElementById('symbol2').value
     let playerTwo = Players(playerTwoName, playerTwoSym);
 
+    let inPlay = playerOne.getName();
+
     const placeSpot = (player, spot, div) => {
         let symbol = player.getSymbol();
         div.textContent = symbol
         gameBoard.gameBoardObject[spot] = symbol
     }
-
-    let inPlay = playerOne.getName();
-    console.log(inPlay)
-
+    
     let board = document.querySelectorAll('div.box')
     board.forEach(div => {
         div.addEventListener('click', () => {
-            console.log(inPlay)
             if (inPlay === playerOne.getName()) {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
                 inPlay = playerTwo.getName();
+                checkWinner();
             } else {
                 placeSpot(playerTwo, div.dataset.boxNumber, div)
                 inPlay = playerOne.getName();
+                checkWinner();
             }
         })
     });
+
     let checkWinner = () => {
-        let winnerCombs = [               
-            [0, 1, 2],
-            [3,4,5],
-            [6,7,8]
+        let array = gameBoard.gameBoardObject
+        let getLocation = (location) => array[location];
+
+        let winnerCombs = [
+            [getLocation(0), getLocation(1), getLocation(2)],
+            [getLocation(3), getLocation(4), getLocation(5)],
+            [getLocation(6), getLocation(7), getLocation(8)],
+            [getLocation(0), getLocation(3), getLocation(6)],
+            [getLocation(1), getLocation(4), getLocation(7)],
+            [getLocation(2), getLocation(5), getLocation(8)],
+            [getLocation(0), getLocation(4), getLocation(8)],
+            [getLocation(2), getLocation(4), getLocation(6)],
         ]
-        let newArray = gameBoard.gameBoardObject.map(x => x)
-        console.log(newArray)
-    }
+        let checkX = JSON.stringify(['X', 'X', 'X'])
+        let checkO = JSON.stringify(['O', 'O', 'O'])
+
+        for (const property in winnerCombs) {
+            if (JSON.stringify(winnerCombs[property]) === checkX) {
+                console.log('winner player 1')
+            } else if (JSON.stringify(winnerCombs[property]) === checkO) {
+                console.log('winner PLayer 2')
+            }
+        }
+
+
+    }   
+
     return {}
 };
 
@@ -65,7 +85,6 @@ const displayGame = (() => {
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
-            // div.textContent = i;
             div.classList.add('box')
             boardContainer.appendChild(div)
         }
