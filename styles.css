@@ -3,6 +3,13 @@ body {
     width: 100vw;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -15,4 +22,5 @@ body {
     justify-content: center;
     border: 1px solid black;
     height: 10vh;
+    width: 10vw;
 }

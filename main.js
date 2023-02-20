@@ -101,13 +101,13 @@ const displayGame = (() => {
         playGame();       
     })
 
+    const clearGameBoardObject = () => {
+        gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
+    }
+
     const clearGameBoard = () => {
         while (boardContainer.firstChild) {
             boardContainer.removeChild(boardContainer.firstChild)
         }
-    }
-
-    const clearGameBoardObject = () => {
-        gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
     }
 })();
