@@ -31,10 +31,10 @@ const displayGame = (() => {
     const playersTop = document.querySelector('.in-play')
     const input1 = document.querySelector('#player1')
     const input2 = document.querySelector('#player2')
-
     const alertDiv = document.querySelector('.alert')
-    const displayBtn = document.querySelector('#display-btn')
-    displayBtn.addEventListener('click', () => {
+
+    //Displays game when form is entered
+    const displayAll = () => {
         if (input1.value == '' || input2.value == '') {
             alertDiv.textContent = 'Please enter both names!'
             return
@@ -46,6 +46,18 @@ const displayGame = (() => {
         displayGameBoard();
         playersTop.classList.toggle('active')
         playGame();
+    }
+    
+    const displayBtn = document.querySelector('#display-btn')
+    displayBtn.addEventListener('click', () => {
+            displayAll();
+        })
+
+    //Enter key can start game
+    addEventListener('keypress', (e) => {
+        if (e.code === 'Enter' && !formDiv.classList.contains('active')) {
+            displayAll();
+        }
     })
 
     const restartBtn = document.querySelector('#restart-btn')
