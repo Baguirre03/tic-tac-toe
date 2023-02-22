@@ -33,9 +33,10 @@ const displayGame = (() => {
         playGame();
     })
 
-    let clearGameBtn = document.querySelector('#restart-btn')
-    clearGameBtn.addEventListener('click', () => {
+    let restartBtn = document.querySelector('#restart-btn')
+    restartBtn.addEventListener('click', () => {
         clearGameBoardObject();
+        winnerDisplay.classList.toggle('active')
         displayGameBoard(); 
         playGame(); 
     })
@@ -49,6 +50,13 @@ const displayGame = (() => {
             boardContainer.removeChild(boardContainer.firstChild)
         }
     }
+    const winnerDisplay = document.querySelector('.winner-display')
+    const winnerText = document.querySelector('.winner')
+    const playerWon = (winner, loser) => {
+        winnerDisplay.classList.toggle('active')
+        winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
+    }
+    return {playerWon}
 })();
 
 const playGame = () => {
@@ -107,20 +115,13 @@ const playGame = () => {
         for (const property in winnerCombs) {
             if (winnerCombs[property].toString() === checkX) {
                 playerWin = true;
-                playerWon(playerOne.getName(), playerTwo.getName());
+                displayGame.playerWon(playerOne.getName(), playerTwo.getName());
             } else if (winnerCombs[property].toString() === checkO) {
                 playerWin = true;
-                playerWon(playerTwo.getName(), playerOne.getName());
+                displayGame.playerWon(playerTwo.getName(), playerOne.getName());
             }
         }
     }   
-
-    const playerWon = (winner, loser) => {
-        const winnerDisplay = document.querySelector('.winner-display')
-        winnerDisplay.classList.add('active')
-        const winnerText = document.querySelector('.winner')
-        winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
-    }
 
     return {}
 };
