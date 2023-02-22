@@ -48,10 +48,12 @@ body {
     padding: 10px;
     border-radius: 1vh;
     gap: 10px;
-    background-color: var(--Saffron);
+    background-color: var(--Amaranth);
     border: black 2px solid;
     height: 25vh;
     width: 25vw;
+    font-size: 1.3rem;
+    box-shadow: 5px 5px 10px var(--Saffron);
 }
 
 .form-container.active {
@@ -65,16 +67,34 @@ body {
     gap: 10px;
 }
 
+input::placeholder {
+    color: var(--Night);
+}
+
 input {
     height: max-content;
-    background-color: var(--Saffron);
+    background-color: var(--Amaranth);
     border: none;
-    border-bottom: black 1px dotted;
+    color: white;    
+    border-bottom: black 2px solid;
+    font-size: 1.2rem;
 }
 
 input:focus {
+    border-bottom: var(--Moonstone) 2px solid;
+    color: white;
     outline: none;
 }
+
+#display-btn {
+    color: var(--Moonstone);
+    background-color: var(--Night);
+    height: 60px;
+    width: 100px;
+    font-size: 1.2rem;
+    font-style:italic;
+}
+
 
 /* Game Board */
 .game-board {
