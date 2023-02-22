@@ -59,7 +59,7 @@ const displayGame = (() => {
     const winnerText = document.querySelector('.winner')
     const playerWon = (winner, loser) => {
         winnerDisplay.classList.toggle('active')
-        winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
+        winnerText.textContent = `${winner} you win! Sorry ${loser} maybe next time!`;
     }
     const playerTie = (player1, player2) => {
         winnerDisplay.classList.toggle('active')
@@ -78,10 +78,13 @@ const playGame = () => {
     let playerTwoSym = 'O'
     let playerTwo = Players(playerTwoName, playerTwoSym);
 
+    //Display Names above board
     let playerOneDisplay = document.querySelector('.player-1')
     let playerTwoDisplay = document.querySelector('.player-2')
     playerOneDisplay.textContent = `${playerOneName} : X`
     playerTwoDisplay.textContent = `${playerTwoName} : O`
+    playerOneDisplay.classList.add('active')
+    playerTwoDisplay.classList.remove('active')
 
     let inPlay = playerOne.getName();
 
@@ -103,11 +106,15 @@ const playGame = () => {
             if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
                     inPlay = playerTwo.getName();
+                    playerOneDisplay.classList.toggle('active')
+                    playerTwoDisplay.classList.toggle('active')
                     checkWinner();
                     checkTie();
                 } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
                     placeSpot(playerTwo, div.dataset.boxNumber, div)
                     inPlay = playerOne.getName();
+                    playerTwoDisplay.classList.toggle('active')
+                    playerOneDisplay.classList.toggle('active')
                     checkWinner();
                     checkTie();
                 }
