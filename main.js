@@ -56,7 +56,12 @@ const displayGame = (() => {
         winnerDisplay.classList.toggle('active')
         winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
     }
-    return {playerWon}
+    const playerTie = (player1, player2) => {
+        winnerDisplay.classList.toggle('active')
+        winnerText.textContent = `Wow ${player1} and ${player2}, its a tie! Next time someone has to win!`
+    }
+
+    return {playerWon, playerTie}
 })();
 
 const playGame = () => {
@@ -89,10 +94,12 @@ const playGame = () => {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
                     inPlay = playerTwo.getName();
                     checkWinner();
+                    checkTie();
                 } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
                     placeSpot(playerTwo, div.dataset.boxNumber, div)
                     inPlay = playerOne.getName();
                     checkWinner();
+                    checkTie();
                 }
             })
         });
@@ -121,7 +128,14 @@ const playGame = () => {
                 displayGame.playerWon(playerTwo.getName(), playerOne.getName());
             }
         }
-    }   
+    }
+    
+    const checkTie = () => {
+        const fullArray = (array) => {return array != ''}
+        if (gameBoard.gameBoardObject.every(fullArray)) {
+            displayGame.playerTie(playerOne.getName(), playerTwo.getName())
+        }
+    }
 
     return {}
 };
