@@ -16,6 +16,7 @@ body {
     flex-direction: column;
 }
 
+
 /* Header */
 .header {
     display: flex;
@@ -37,6 +38,9 @@ body {
     gap: 10px;
     height: 100%;
     background-color: var(--Moonstone);
+}
+
+.container {
 }
 
 /* Form */
@@ -75,19 +79,19 @@ input {
     height: max-content;
     background-color: var(--Amaranth);
     border: none;
-    color: white;    
-    border-bottom: black 2px solid;
+    color: var(--Night);    
+    border-bottom: black 3px solid;
     font-size: 1.2rem;
 }
 
 input:focus {
-    border-bottom: var(- -Moonstone) 2px solid;
-    color: white;
+    border-bottom: var(--Saffron) 3px solid;
+    color: var(--Night);
     outline: none;
 }
 
 #display-btn {
-    color: var(--Moonstone);
+    color: var(--Tomato);
     background-color: var(--Night);
     height: 60px;
     width: 100px;
@@ -103,8 +107,9 @@ input:focus {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 4px;
+    align-self: center;
+    top: 50%; transform: translate(0%, -50%);
 }
-
 .box {
     display: flex;
     align-items: center;
@@ -114,7 +119,7 @@ input:focus {
     height: 100px;
     width: 100px;
     font-size: 2rem;
-    color: var(--Moonstone);
+    color: var(--Amaranth);
     background-color: var(--Night);
 }
 
@@ -123,12 +128,13 @@ input:focus {
     display: flex;
     flex-direction: column;
     position: absolute;
-    visibility:hidden;
+    visibility: hidden;
     align-items: center;
+    align-self: center;
     justify-content: center;
     border: 1px solid black;
     background-color: var(--Saffron);
-    top: 50%; transform: translate(0, -50%);
+    top: 50%; transform: translate(0%, -50%);
     scale: .1;
 }
 
@@ -136,16 +142,20 @@ input:focus {
     visibility: visible;
     border: var(--Night) 2px solid;
     padding: 20px;
-    background-color: var(--Amaranth);
-    color: white;
+    background-color: var(--Saffron);
+    color: var(--Amaranth);
     border-radius: 1vw;
-    align-items: center;
+    align-self: center;
     justify-content: center;
     top: 50%; transform: translate(0, -50%);
     position: absolute;
     transition: 1s;
     scale: 1;
-    
+    box-shadow: 8px 8px 5px var(--Night);
+}
+
+#restart-btn {
+    background-color: var(--Amaranth);
 }
 
 /* Footer */
