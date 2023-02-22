@@ -10,20 +10,35 @@
 body {
     height: 100vh;
     width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    width: 100%;
+    background-color: var(--Moonstone);
+    font-size: 3rem;
+}
+
+/* Form */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-/*  */
 
-/* Form */
 .form {
     display: flex;
     gap: 20px;
+    height: 100%;
 }
 
 .player-form {
@@ -52,11 +67,20 @@ input {
     height: 10vh;
     width: 10vw;
 }
-/* GB end */
 
-
+/* Winner Display */
 .winner-display {
     border: black 1px solid;
     padding: 20px;
     visibility: hidden;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    margin-top: auto;
+    height: 5vh;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Saffron);
 }
