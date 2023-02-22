@@ -50,8 +50,18 @@ body {
     display: flex;
     position: absolute;
     align-self: center;
+    justify-content: center;
+    align-items: center;
     gap: 40px;
     top: 17vh;
+    scale: .1;
+    visibility: hidden;
+}
+
+.in-play.active {
+    scale: 1;
+    transition: 1s;
+    visibility: visible;
 }
 
 .in-play h2 {
@@ -127,6 +137,7 @@ input:focus {
     gap: 4px;
     align-self: center;
     top: 50%; transform: translate(0%, -50%);
+    transition: 1s;
 }
 .box {
     display: flex;

@@ -27,11 +27,14 @@ const displayGame = (() => {
         }
     }
 
-    let displayBtn = document.querySelector('#display-btn')
+    const displayBtn = document.querySelector('#display-btn')
     const formDiv = document.querySelector('.form-container')
+    const playersTop = document.querySelector('.in-play')
+
     displayBtn.addEventListener('click', () => {
         formDiv.classList.toggle('active')
         displayGameBoard();
+        playersTop.classList.toggle('active')
         playGame();
     })
 
@@ -74,6 +77,11 @@ const playGame = () => {
     let playerTwoName = document.getElementById('player2').value
     let playerTwoSym = 'O'
     let playerTwo = Players(playerTwoName, playerTwoSym);
+
+    let playerOneDisplay = document.querySelector('.player-1')
+    let playerTwoDisplay = document.querySelector('.player-2')
+    playerOneDisplay.textContent = `${playerOneName} : X`
+    playerTwoDisplay.textContent = `${playerTwoName} : O`
 
     let inPlay = playerOne.getName();
 
