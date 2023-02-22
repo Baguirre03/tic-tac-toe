@@ -32,10 +32,14 @@ const displayGame = (() => {
     const input1 = document.querySelector('#player1')
     const input2 = document.querySelector('#player2')
 
+    const alertDiv = document.querySelector('.alert')
     const displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
         if (input1.value == '' || input2.value == '') {
-            alert('Please enter both names!')
+            alertDiv.textContent = 'Please enter both names!'
+            return
+        } else if (input1.value === input2.value) {
+            alertDiv.textContent = 'Please put different names!'
             return
         }
         formDiv.classList.toggle('active')

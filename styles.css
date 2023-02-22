@@ -125,6 +125,14 @@ input:focus {
     outline: none;
 }
 
+.alert {
+    display: flex;
+    font-size: 1.1rem;
+    color: red;
+    justify-content: center;
+    align-items: center;
+}
+
 #display-btn {
     color: var(--Amaranth);
     background-color: var(--Night);
@@ -136,7 +144,6 @@ input:focus {
     font-style:italic;
     box-shadow: 3px 3px 3px var(--Moonstone);
 }
-
 
 /* Game Board */
 .game-board {
