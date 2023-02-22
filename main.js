@@ -53,11 +53,11 @@ const displayGame = (() => {
 
 const playGame = () => {
     let playerOneName = document.getElementById('player1').value
-    let playerOneSym = document.getElementById('symbol1').value
+    let playerOneSym = 'X'
     let playerOne = Players(playerOneName, playerOneSym);
 
     let playerTwoName = document.getElementById('player2').value
-    let playerTwoSym = document.getElementById('symbol2').value
+    let playerTwoSym = 'O'
     let playerTwo = Players(playerTwoName, playerTwoSym);
 
     let inPlay = playerOne.getName();
@@ -107,15 +107,20 @@ const playGame = () => {
         for (const property in winnerCombs) {
             if (winnerCombs[property].toString() === checkX) {
                 playerWin = true;
-                playerWon();
+                playerWon(playerOne.getName(), playerTwo.getName());
             } else if (winnerCombs[property].toString() === checkO) {
                 playerWin = true;
-                playerWon();
+                playerWon(playerTwo.getName(), playerOne.getName());
             }
         }
     }   
 
-    const playerWon = () => {
+    const playerWon = (winner, loser) => {
+        const winnerDisplay = document.querySelector('.winner-display')
+        const winnerText = document.querySelector('.winner')
+        winnerText.textContent = `${winner} has won the game! Sorry ${loser} maybe next time!`;
+        //make popup appear
+        //Restart game in this
     }
 
     return {}
