@@ -27,10 +27,10 @@ const displayGame = (() => {
         }
     }
 
-    const displayBtn = document.querySelector('#display-btn')
     const formDiv = document.querySelector('.form-container')
     const playersTop = document.querySelector('.in-play')
 
+    const displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
         formDiv.classList.toggle('active')
         displayGameBoard();
@@ -38,12 +38,17 @@ const displayGame = (() => {
         playGame();
     })
 
-    let restartBtn = document.querySelector('#restart-btn')
+    const restartBtn = document.querySelector('#restart-btn')
     restartBtn.addEventListener('click', () => {
         clearGameBoardObject();
         winnerDisplay.classList.toggle('active')
         displayGameBoard(); 
         playGame(); 
+    })
+
+    const newGameBtn = document.querySelector('#new-game')
+    newGameBtn.addEventListener('click', () => {
+        location.reload();
     })
 
     const clearGameBoardObject = () => {

@@ -193,7 +193,22 @@ input:focus {
     box-shadow: 8px 8px 5px var(--Night);
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 #restart-btn {
+    background-color: var(--Moonstone);
+    color: var(--Amaranth);
+    border-radius: 1vh;
+    padding: 5px;
+    font-size: 1.2rem;
+}
+
+#new-game {
     background-color: var(--Moonstone);
     color: var(--Amaranth);
     border-radius: 1vh;
