@@ -68,16 +68,19 @@ const playGame = () => {
         gameBoard.gameBoardObject[spot] = symbol
     }
     
-    let getLocation = (location) => gameBoard.gameBoardObject[location];
-    let board = document.querySelectorAll('div.box')
+    const getLocation = (location) => gameBoard.gameBoardObject[location];
+    const board = document.querySelectorAll('div.box')
+    let playerWin = false;
 
     board.forEach(div => {
         div.addEventListener('click', () => {
+            if (playerWin) {
+                return
+            }
             if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
                     inPlay = playerTwo.getName();
                     checkWinner();
-                    console.log(inPlay)
                 } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
                     placeSpot(playerTwo, div.dataset.boxNumber, div)
                     inPlay = playerOne.getName();
@@ -85,8 +88,8 @@ const playGame = () => {
                 }
             })
         });
-
-    let checkWinner = () => {
+    
+    const checkWinner = () => {
         let winnerCombs = [
             [getLocation(0), getLocation(1), getLocation(2)],
             [getLocation(3), getLocation(4), getLocation(5)],
@@ -103,12 +106,17 @@ const playGame = () => {
 
         for (const property in winnerCombs) {
             if (winnerCombs[property].toString() === checkX) {
-                console.log('winner player 1')
-                playerWin = true
+                playerWin = true;
+                playerWon();
             } else if (winnerCombs[property].toString() === checkO) {
-                console.log('winner PLayer 2')
+                playerWin = true;
+                playerWon();
             }
         }
     }   
+
+    const playerWon = () => {
+    }
+
     return {}
 };
