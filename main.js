@@ -117,7 +117,7 @@ const playGame = () => {
 
     const playerWon = (winner, loser) => {
         const winnerDisplay = document.querySelector('.winner-display')
-        winnerDisplay.style = 'visibility: visible'
+        winnerDisplay.classList.add('active')
         const winnerText = document.querySelector('.winner')
         winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
     }

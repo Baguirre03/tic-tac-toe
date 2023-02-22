@@ -12,20 +12,23 @@
         Tic-Tac-Toe
     </div>
     <div class="container">
-        <form action="" class="form">
-            <div class="player-form">
-                <input type="text" name="player1" id="player1" placeholder="Player 1 Name">
-                <p>Player 1 Symbol: X</p>
-            </div>
-            <divv class="player-form">
-                <input type="text" name="player2" id="player2" placeholder="Player 2 Name">
-                <p>Player 2 Symbol: O</p>
-            </divv>
-        </form>
+        <div class="form-container">
+                <div class="player-inputs">
+                    <p>Player 1 Symbol: X</p>
+                    <input type="text" name="player1" id="player1" placeholder="Player 1 Name">
+                </div>
+                <div class="player-inputs">
+                    <p>Player 2 Symbol: O</p>
+                    <input type="text" name="player2" id="player2" placeholder="Player 2 Name">
+                </div>
+        </div>
+
         <button id="display-btn" form="">Start Game</button>
+
         <div class="game-board">
 
         </div>
+
         <div class="winner-display">
             <h3 class="winner">Winner:</h3>
             <button id="restart-btn">Restart Game</button>
