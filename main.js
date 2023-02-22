@@ -28,7 +28,9 @@ const displayGame = (() => {
     }
 
     let displayBtn = document.querySelector('#display-btn')
+    const formDiv = document.querySelector('.form-container')
     displayBtn.addEventListener('click', () => {
+        formDiv.classList.toggle('active')
         displayGameBoard();
         playGame();
     })

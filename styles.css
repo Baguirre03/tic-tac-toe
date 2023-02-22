@@ -25,6 +25,7 @@ body {
     width: 100%;
     background-color: var(--Moonstone);
     font-size: 3rem;
+    padding-top: 20px;
 }
 
 /* All container */
@@ -36,13 +37,19 @@ body {
     gap: 10px;
     height: 100%;
     background-color: var(--Moonstone);
+    padding-bottom: 200px;
 }
 
 /* Form */
 .form-container {
     padding: 0px 10px 0px 10px;
     gap: 10px;
-    background-color: var(--Night);
+    background-color: var(--Saffron);
+    border: black 2px solid;
+}
+
+.form-container.active {
+    visibility: hidden;
 }
 
 .player-inputs {
@@ -59,17 +66,23 @@ input {
 /* Game Board */
 .game-board {
     display: grid;
+    position: absolute;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    gap: 4px;
 }
 
 .box {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
-    height: 10vh;
-    width: 10vw;
+    border: 5px solid var(--Tomato);
+    border-radius: 6px;
+    height: 100px;
+    width: 100px;
+    font-size: 2rem;
+    color: var(--Moonstone);
+    background-color: var(--Night);
 }
 
 /* Winner Display */
@@ -87,7 +100,7 @@ input {
 
 .winner-display.active {
     visibility: visible;
-    border: var(--Moonstone) 2px solid;
+    border: var(--Night) 2px solid;
     padding: 20px;
     background-color: var(--Amaranth);
     color: white;
@@ -104,7 +117,7 @@ input {
 footer {
     display: flex;
     margin-top: auto;
-    height: 5vh;
+    height: 7vh;
     align-items: center;
     justify-content: center;
     background-color: var(--Night);
