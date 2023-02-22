@@ -106,20 +106,27 @@ const playGame = () => {
             if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
                 placeSpot(playerOne, div.dataset.boxNumber, div)
                     inPlay = playerTwo.getName();
-                    playerOneDisplay.classList.toggle('active')
-                    playerTwoDisplay.classList.toggle('active')
+                    playerHighlightTwo();
                     checkWinner();
                     checkTie();
                 } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
                     placeSpot(playerTwo, div.dataset.boxNumber, div)
                     inPlay = playerOne.getName();
-                    playerTwoDisplay.classList.toggle('active')
-                    playerOneDisplay.classList.toggle('active')
+                    playerHighlightOne();
                     checkWinner();
                     checkTie();
                 }
             })
         });
+    
+    const playerHighlightOne = () => {
+        playerTwoDisplay.classList.toggle('active')
+        playerOneDisplay.classList.toggle('active')
+    }
+    const playerHighlightTwo = () => {
+        playerOneDisplay.classList.toggle('active')
+        playerTwoDisplay.classList.toggle('active')
+    }
     
     const checkWinner = () => {
         let winnerCombs = [
