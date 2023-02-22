@@ -1,3 +1,12 @@
+* {
+    --Night: #0C090D;
+    --Amaranth: #E01A4F;
+    --Tomato: #F15946;
+    --Saffron: #F9C22E;
+    --Moonstone: #53B3CB;
+}
+
+/* All Conent */
 body {
     height: 100vh;
     width: 100vw;
@@ -9,7 +18,26 @@ body {
     align-items: center;
     gap: 10px;
 }
+/*  */
 
+/* Form */
+.form {
+    display: flex;
+    gap: 20px;
+}
+
+.player-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+input {
+    height: max-content;
+}
+
+/* Game Board */
 .game-board {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -23,4 +51,12 @@ body {
     border: 1px solid black;
     height: 10vh;
     width: 10vw;
+}
+/* GB end */
+
+
+.winner-display {
+    border: black 1px solid;
+    padding: 20px;
+    visibility: hidden;
 }

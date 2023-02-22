@@ -117,10 +117,9 @@ const playGame = () => {
 
     const playerWon = (winner, loser) => {
         const winnerDisplay = document.querySelector('.winner-display')
+        winnerDisplay.style = 'visibility: visible'
         const winnerText = document.querySelector('.winner')
-        winnerText.textContent = `${winner} has won the game! Sorry ${loser} maybe next time!`;
-        //make popup appear
-        //Restart game in this
+        winnerText.textContent = `${winner} has won the game, sorry ${loser} maybe next time!`;
     }
 
     return {}
