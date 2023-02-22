@@ -78,7 +78,7 @@ const displayGame = (() => {
     }
     const playerTie = (player1, player2) => {
         winnerDisplay.classList.toggle('active')
-        winnerText.textContent = `Wow ${player1} and ${player2}, its a tie! Next time someone has to win!`
+        winnerText.textContent = `${player1} and ${player2}, its a tie! Next time someone better to win!`
     }
 
     return {playerWon, playerTie}
