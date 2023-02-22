@@ -47,18 +47,26 @@ const displayGame = (() => {
         playersTop.classList.toggle('active')
         playGame();
     }
-    
+
     const displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
             displayAll();
         })
 
-    //Enter key can start game
+    //Enter key can start game for 2 player
     addEventListener('keypress', (e) => {
         if (e.code === 'Enter' && !formDiv.classList.contains('active')) {
             displayAll();
         }
     })
+
+    const botBtn = document.querySelector('#bot-btn')
+    const botForm = document.querySelector('.bot-form')
+    botBtn.addEventListener('click', () => {
+        botForm.classList.toggle('active')
+        formDiv.classList.toggle('active')
+    })
+    
 
     const restartBtn = document.querySelector('#restart-btn')
     restartBtn.addEventListener('click', () => {
@@ -187,6 +195,9 @@ const playGame = () => {
             displayGame.playerTie(playerOne.getName(), playerTwo.getName())
         }
     }
-
     return {}
 };
+
+const playBot = () => {
+
+}

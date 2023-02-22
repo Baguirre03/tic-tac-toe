@@ -76,8 +76,6 @@ body {
     transition: .5s;
 }
 
-
-
 /* Form */
 .form-container {
     display: flex;
@@ -133,6 +131,11 @@ input:focus {
     align-items: center;
 }
 
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 #display-btn {
     color: var(--Amaranth);
     background-color: var(--Night);
@@ -143,6 +146,50 @@ input:focus {
     font-size: 1.2rem;
     font-style:italic;
     box-shadow: 3px 3px 3px var(--Moonstone);
+}
+
+#bot-btn {
+    color: var(--Amaranth);
+    background-color: var(--Night);
+    border-radius: 4px;
+    height: 60px;
+    width: 100px;
+    border: var(--Tomato) 2px solid;
+    font-size: 1.2rem;
+    font-style:italic;
+    box-shadow: 3px 3px 3px var(--Moonstone);
+}
+
+/* Bot form */
+.bot-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px 10px 30px;
+    border-radius: 1vh;
+    background-color: var(--Amaranth);
+    border: black 2px solid;
+    height: max-content;
+    width: max-content;
+    font-size: 1.3rem;
+    box-shadow: 10px 10px 10px var(--Night);
+    position: absolute;
+    align-self: center;
+    top: 50%; transform: translate(0%, -76%);
+    visibility: hidden;
+}
+
+.bot-form.active {
+    visibility: visible;
+}
+
+
+.player-input-bot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Game Board */
