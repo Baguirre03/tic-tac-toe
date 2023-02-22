@@ -29,9 +29,15 @@ const displayGame = (() => {
 
     const formDiv = document.querySelector('.form-container')
     const playersTop = document.querySelector('.in-play')
+    const input1 = document.querySelector('#player1')
+    const input2 = document.querySelector('#player2')
 
     const displayBtn = document.querySelector('#display-btn')
     displayBtn.addEventListener('click', () => {
+        if (input1.value == '' || input2.value == '') {
+            alert('Please enter both names!')
+            return
+        }
         formDiv.classList.toggle('active')
         displayGameBoard();
         playersTop.classList.toggle('active')
