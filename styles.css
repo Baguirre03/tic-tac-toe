@@ -176,12 +176,16 @@ input:focus {
     box-shadow: 10px 10px 10px var(--Night);
     position: absolute;
     align-self: center;
-    top: 50%; transform: translate(0%, -76%);
+    top: 35%; transform: translate(0%, -76%);
     visibility: hidden;
+    scale: .3;
 }
 
 .bot-form.active {
+    transition: 1s;
+    scale: 1;
     visibility: visible;
+    top: 50%; transform: translate(0%, -76%);
 }
 
 
