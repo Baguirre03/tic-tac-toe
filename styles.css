@@ -240,8 +240,15 @@ input:focus {
     grid-template-rows: 1fr 1fr 1fr;
     gap: 4px;
     align-self: center;
+    visibility: hidden;
     top: 50%; transform: translate(0%, -50%);
+    scale: .3;
+}
+
+.game-board.active {
+    visibility: visible;
     transition: 1s;
+    scale: 1;
 }
 .box {
     display: flex;
@@ -254,6 +261,7 @@ input:focus {
     font-size: 2rem;
     color: var(--Amaranth);
     background-color: var(--Night);
+    transition: ;
 }
 
 /* Winner Display */

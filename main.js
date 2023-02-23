@@ -19,6 +19,7 @@ const displayGame = (() => {
     let boardContainer = document.querySelector('.game-board')
     const displayGameBoard = () => {
         clearGameBoard();
+        boardContainer.classList.add('active')
         for (i = 0; i < gameBoard.gameBoardObject.length; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
@@ -80,6 +81,7 @@ const displayGame = (() => {
     restartBtn.addEventListener('click', () => {
         clearGameBoardObject();
         winnerDisplay.classList.toggle('active')
+        boardContainer.classList.remove('active')
         displayGameBoard(); 
         playGame(); 
     })
