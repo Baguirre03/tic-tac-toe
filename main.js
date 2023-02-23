@@ -65,6 +65,7 @@ const displayGame = (() => {
     const botBtn = document.querySelector('#bot-btn')
     const botForm = document.querySelector('.bot-form')
     const returnBtn = document.querySelector('#return')
+    const startBot = document.querySelector('#start-bot')
 
     botBtn.addEventListener('click', () => {
         botForm.classList.toggle('active')
@@ -74,16 +75,23 @@ const displayGame = (() => {
         formDiv.classList.toggle('active')
         botForm.classList.toggle('active')
     })
+    startBot.addEventListener('click', () => {
+        botForm.classList.toggle('active')
+        displayGameBoard();
+        playersTop.classList.toggle('active')
+        playBot();
+    })
+
 
     
-
+    //After gameboard displays commands
     const restartBtn = document.querySelector('#restart-btn')
     restartBtn.addEventListener('click', () => {
         clearGameBoardObject();
         winnerDisplay.classList.toggle('active')
         boardContainer.classList.remove('active')
         displayGameBoard(); 
-        playGame(); 
+        playGame();
     })
 
     const newGameBtn = document.querySelector('#new-game')
@@ -205,9 +213,26 @@ const playGame = () => {
             displayGame.playerTie(playerOne.getName(), playerTwo.getName())
         }
     }
-    return {}
+    return {
+        checkWinner, 
+        checkTie, 
+        playerHighlightTwo, 
+        playerHighlightOne,
+        placeSpot
+    }
 };
 
 const playBot = () => {
+    let playerOneName = document.getElementById('player3').value
+    let playerOneSym = 'X'
+    let playerOne = Players(playerOneName, playerOneSym);
 
+    let botName = document.getElementById('player-bot').textContent
+    let botSymbol = 'O'
+    let bot = Players(botName, botSymbol)
+
+    let playerOneDisplay = document.querySelector('.player-1')
+    let playerTwoDisplay = document.querySelector('.player-2')
+    playerOneDisplay.textContent = `${playerOneName} : X`
+    playerTwoDisplay.textContent = `${botName} : O`
 }

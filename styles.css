@@ -91,13 +91,13 @@ body {
     width: max-content;
     font-size: 1.3rem;
     box-shadow: 10px 10px 10px var(--Night);
-    transition: 1s;
+    transition: .9s;
     scale: 1;
 }
 
 .form-container.active {
     visibility: hidden;
-    scale: .3;
+    scale: .2;
 }
 
 .player-inputs {
@@ -261,7 +261,6 @@ input:focus {
     font-size: 2rem;
     color: var(--Amaranth);
     background-color: var(--Night);
-    transition: ;
 }
 
 /* Winner Display */
