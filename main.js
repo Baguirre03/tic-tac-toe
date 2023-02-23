@@ -11,25 +11,28 @@ const Players = (name, symbol) => {
 const gameFlowController = (() => {
     let gameBoardObject = ['', '', '', '', '', '', '', '', '',]
     let playerWin = false
-    let board = document.querySelectorAll('div.box')
     const getLocation = (location) => gameBoardObject[location];
-
-
+    
+    
     const playerOne = Players('Player1', 'X')
     const playerTwo = Players('Player2', '0')
-
+    
     let inPlay = playerOne.getName();
-
-    board.forEach((div) => {
-        div.addEventListener('click', () => {
-            if (playerWin) {
-                return
-            }
-            if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
-                placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
-            }
-        })
-    })
+    
+    const boardBegin = () => {
+        const board = document.querySelectorAll('div.box')
+            board.forEach((div) => {
+                div.addEventListener('click', () => {
+                    if (playerWin) {
+                        return
+                    }
+                    if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
+                        placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
+                        console.log(gameBoardObject)
+                    }
+                })
+            })   
+    }
 
     const placeSpot = (symbol, spot) => {
         gameBoardObject[spot] = symbol
@@ -78,9 +81,7 @@ const gameFlowController = (() => {
     }
 
     return {
-        editBoardArray,
-        playerOne,
-        playerTwo
+        boardBegin,
     }
 })();
 
@@ -120,6 +121,7 @@ const DomController = (() => {
             div.classList.add('box')
             boardContainer.appendChild(div)
         }
+        gameFlowController.boardBegin();
     }
 
     const displayAll = () => {
