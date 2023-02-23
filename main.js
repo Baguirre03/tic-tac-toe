@@ -34,6 +34,11 @@ const displayGame = (() => {
     const input2 = document.querySelector('#player2')
     const alertDiv = document.querySelector('.alert')
 
+    const displayBtn = document.querySelector('#display-btn')
+    displayBtn.addEventListener('click', () => {
+            displayAll();
+        })
+
     //Displays game when form is entered
     const displayAll = () => {
         if (input1.value == '' || input2.value == '') {
@@ -46,13 +51,8 @@ const displayGame = (() => {
         formDiv.classList.toggle('active')
         displayGameBoard();
         playersTop.classList.toggle('active')
-        playGame();
+        gameFlowControl.createPlayers();
     }
-
-    const displayBtn = document.querySelector('#display-btn')
-    displayBtn.addEventListener('click', () => {
-            displayAll();
-        })
 
     //Enter key can start game for 2 player
     addEventListener('keypress', (e) => {
@@ -109,6 +109,7 @@ const displayGame = (() => {
 
     const winnerDisplay = document.querySelector('.winner-display')
     const winnerText = document.querySelector('.winner')
+
     const playerWon = (winner, loser) => {
         winnerDisplay.classList.toggle('active')
         winnerText.textContent = `${winner} you win! Sorry ${loser} maybe next time!`;
@@ -122,7 +123,56 @@ const displayGame = (() => {
 })();
 
 const gameFlowControl = (() => { 
-    console.log('hi')
+    const board = document.querySelectorAll('div.box')
+    const playerOneDisplay = document.querySelector('.player-1')
+    const playerTwoDisplay = document.querySelector('.player-2')
+
+    const createPlayers = () => {
+        let playerOneName = document.getElementById('player1').value
+        let playerOneSym = 'X'
+        let playerOne = Players(playerOneName, playerOneSym);
+    
+        let playerTwoName = document.getElementById('player2').value
+        let playerTwoSym = 'O'
+        let playerTwo = Players(playerTwoName, playerTwoSym);
+
+        playerOneDisplay.textContent = `${playerOneName} : X`
+        playerTwoDisplay.textContent = `${playerTwoName} : O`
+        playerOneDisplay.classList.add('active')
+        playerTwoDisplay.classList.remove('active')
+    }
+
+    board.forEach(div => {
+        div.addEventListener('click', () => {
+            if (playerWin) {
+                return
+            }
+            if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
+                placeSpot(playerOne, div.dataset.boxNumber, div)
+                    inPlay = playerTwo.getName();
+                    playerHighlightTwo();
+                    checkWinner();
+                    checkTie();
+                } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
+                    placeSpot(playerTwo, div.dataset.boxNumber, div)
+                    inPlay = playerOne.getName();
+                    playerHighlightOne();
+                    checkWinner();
+                    checkTie();
+                }
+            })
+        });
+    
+    const placeSpot = (player, spot, div) => {
+        let symbol = player.getSymbol();
+        div.textContent = symbol
+        gameBoard.gameBoardObject[spot] = symbol
+    }
+
+    
+    return {
+        createPlayers
+    }
 })();
 
 
