@@ -18,6 +18,8 @@ const gameFlowController = (() => {
     const playerTwo = Players('Player2', '0')
     
     let inPlay = playerOne.getName();
+    const playerOneName = playerOne.getName();
+    const playerTwoName = playerTwo.getName()
     
     const boardBegin = () => {
         const board = document.querySelectorAll('div.box')
@@ -26,8 +28,13 @@ const gameFlowController = (() => {
                     if (playerWin) {
                         return
                     }
-                    if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
+                    if (inPlay === playerOneName && getLocation(div.dataset.boxNumber) === '') {
                         placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
+                        inPlay = playerTwoName
+                        console.log(gameBoardObject)
+                    } else if (inPlay === playerTwoName && getLocation(div.dataset.boxNumber) === '' ) {
+                        placeSpot(playerTwo.getSymbol(), div.dataset.boxNumber)
+                        inPlay = playerOneName
                         console.log(gameBoardObject)
                     }
                 })
@@ -38,11 +45,6 @@ const gameFlowController = (() => {
         gameBoardObject[spot] = symbol
     }
     
-    const editBoardArray = (player, spot) => {
-        let symbol = player.getSymbol();
-        gameBoardObject[spot] = symbol
-    }
-
     const clearGameBoardObject = () => {
         gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
     }
