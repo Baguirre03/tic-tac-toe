@@ -81,8 +81,6 @@ const displayGame = (() => {
         playersTop.classList.toggle('active')
         playBot();
     })
-
-
     
     //After gameboard displays commands
     const restartBtn = document.querySelector('#restart-btn')
@@ -108,6 +106,7 @@ const displayGame = (() => {
             boardContainer.removeChild(boardContainer.firstChild)
         }
     }
+
     const winnerDisplay = document.querySelector('.winner-display')
     const winnerText = document.querySelector('.winner')
     const playerWon = (winner, loser) => {
@@ -122,6 +121,11 @@ const displayGame = (() => {
     return {playerWon, playerTie}
 })();
 
+const gameFlowControl = (() => { 
+    console.log('hi')
+})();
+
+
 const playGame = () => {
     let playerOneName = document.getElementById('player1').value
     let playerOneSym = 'X'
@@ -132,8 +136,8 @@ const playGame = () => {
     let playerTwo = Players(playerTwoName, playerTwoSym);
 
     //Display Names above board
-    let playerOneDisplay = document.querySelector('.player-1')
-    let playerTwoDisplay = document.querySelector('.player-2')
+    const playerOneDisplay = document.querySelector('.player-1')
+    const playerTwoDisplay = document.querySelector('.player-2')
     playerOneDisplay.textContent = `${playerOneName} : X`
     playerTwoDisplay.textContent = `${playerTwoName} : O`
     playerOneDisplay.classList.add('active')
@@ -213,13 +217,7 @@ const playGame = () => {
             displayGame.playerTie(playerOne.getName(), playerTwo.getName())
         }
     }
-    return {
-        checkWinner, 
-        checkTie, 
-        playerHighlightTwo, 
-        playerHighlightOne,
-        placeSpot
-    }
+    return {}
 };
 
 const playBot = () => {
@@ -231,8 +229,18 @@ const playBot = () => {
     let botSymbol = 'O'
     let bot = Players(botName, botSymbol)
 
-    let playerOneDisplay = document.querySelector('.player-1')
-    let playerTwoDisplay = document.querySelector('.player-2')
+    const playerOneDisplay = document.querySelector('.player-1')
+    const playerTwoDisplay = document.querySelector('.player-2')
     playerOneDisplay.textContent = `${playerOneName} : X`
     playerTwoDisplay.textContent = `${botName} : O`
+    playerOneDisplay.classList.add('active')
+    playerTwoDisplay.classList.remove('active')
+
+    let inPlay = playerOne.getName();
+    const board = document.querySelectorAll('div.box')
+    let playerWin = false;
+
+    //USE OTHER LOGIC HERE
+
+    return {}
 }
