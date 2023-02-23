@@ -91,10 +91,13 @@ body {
     width: max-content;
     font-size: 1.3rem;
     box-shadow: 10px 10px 10px var(--Night);
+    transition: 1s;
+    scale: 1;
 }
 
 .form-container.active {
     visibility: hidden;
+    scale: .3;
 }
 
 .player-inputs {
@@ -144,7 +147,7 @@ input:focus {
     width: 100px;
     border: var(--Tomato) 2px solid;
     font-size: 1.2rem;
-    font-style:italic;
+    font-style: italic;
     box-shadow: 3px 3px 3px var(--Moonstone);
 }
 
@@ -156,7 +159,7 @@ input:focus {
     width: 100px;
     border: var(--Tomato) 2px solid;
     font-size: 1.2rem;
-    font-style:italic;
+    font-style: italic;
     box-shadow: 3px 3px 3px var(--Moonstone);
 }
 
@@ -179,6 +182,7 @@ input:focus {
     top: 35%; transform: translate(0%, -76%);
     visibility: hidden;
     scale: .3;
+    gap: 20px;
 }
 
 .bot-form.active {
@@ -188,12 +192,44 @@ input:focus {
     top: 50%; transform: translate(0%, -76%);
 }
 
+.bot-form p {
+    margin: 0;
+}
 
 .player-input-bot {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.bot-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#start-bot {
+    color: var(--Amaranth);
+    background-color: var(--Night);
+    border-radius: 4px;
+    height: 80px;
+    width: 100px;
+    border: var(--Tomato) 2px solid;
+    font-size: 1.2rem;
+    font-style: italic;
+    box-shadow: 3px 3px 3px var(--Moonstone);
+}
+
+#return {
+    color: var(--Amaranth);
+    background-color: var(--Night);
+    border-radius: 4px;
+    height: 80px;
+    width: 100px;
+    border: var(--Tomato) 2px solid;
+    font-size: 1.2rem;
+    font-style: italic;
+    box-shadow: 3px 3px 3px var(--Moonstone);
 }
 
 /* Game Board */

@@ -60,12 +60,20 @@ const displayGame = (() => {
         }
     })
 
+    //BOt Form Commands
     const botBtn = document.querySelector('#bot-btn')
     const botForm = document.querySelector('.bot-form')
+    const returnBtn = document.querySelector('#return')
+
     botBtn.addEventListener('click', () => {
         botForm.classList.toggle('active')
         formDiv.classList.toggle('active')
     })
+    returnBtn.addEventListener('click', () => {
+        formDiv.classList.toggle('active')
+        botForm.classList.toggle('active')
+    })
+
     
 
     const restartBtn = document.querySelector('#restart-btn')
