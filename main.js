@@ -15,8 +15,46 @@ const Players = (name, symbol) => {
     }
 }
 
-const displayGame = (() => {
+const gameFlowController = (() => {
+    let gameBoardObject = ['', '', '', '', '', '', '', '', '',]
+
+    const editBoardArray = (player, spot) => {
+        let symbol = player.getSymbol();
+        gameBoardObject[spot] = symbol
+    }
+
+
+    return {
+        editBoardArray
+    }
+})();
+
+const DomController = (() => {
+    const board = document.querySelectorAll('div.box')
     let boardContainer = document.querySelector('.game-board')
+
+    const formDiv = document.querySelector('.form-container')
+    const playersTop = document.querySelector('.in-play')
+    const input1 = document.querySelector('#player1')
+    const input2 = document.querySelector('#player2')
+    const alertDiv = document.querySelector('.alert')
+
+    const displayBtn = document.querySelector('#display-btn')
+    displayBtn.addEventListener('click', () => {
+        displayAll();
+    })
+    addEventListener('keypress', (e) => {
+        if (e.code === 'Enter' && !formDiv.classList.contains('active')) {
+            displayAll();
+        }
+    })
+
+    const clearGameBoard = () => {
+        while (boardContainer.firstChild) {
+            boardContainer.removeChild(boardContainer.firstChild)
+        }
+    }
+
     const displayGameBoard = () => {
         clearGameBoard();
         boardContainer.classList.add('active')
@@ -28,18 +66,6 @@ const displayGame = (() => {
         }
     }
 
-    const formDiv = document.querySelector('.form-container')
-    const playersTop = document.querySelector('.in-play')
-    const input1 = document.querySelector('#player1')
-    const input2 = document.querySelector('#player2')
-    const alertDiv = document.querySelector('.alert')
-
-    const displayBtn = document.querySelector('#display-btn')
-    displayBtn.addEventListener('click', () => {
-            displayAll();
-        })
-
-    //Displays game when form is entered
     const displayAll = () => {
         if (input1.value == '' || input2.value == '') {
             alertDiv.textContent = 'Please enter both names!'
@@ -51,17 +77,9 @@ const displayGame = (() => {
         formDiv.classList.toggle('active')
         displayGameBoard();
         playersTop.classList.toggle('active')
-        gameFlowControl.createPlayers();
     }
 
-    //Enter key can start game for 2 player
-    addEventListener('keypress', (e) => {
-        if (e.code === 'Enter' && !formDiv.classList.contains('active')) {
-            displayAll();
-        }
-    })
-
-    //BOt Form Commands
+    //BOT commands
     const botBtn = document.querySelector('#bot-btn')
     const botForm = document.querySelector('.bot-form')
     const returnBtn = document.querySelector('#return')
@@ -79,34 +97,19 @@ const displayGame = (() => {
         botForm.classList.toggle('active')
         displayGameBoard();
         playersTop.classList.toggle('active')
-        playBot();
     })
-    
-    //After gameboard displays commands
-    const restartBtn = document.querySelector('#restart-btn')
-    restartBtn.addEventListener('click', () => {
-        clearGameBoardObject();
-        winnerDisplay.classList.toggle('active')
-        boardContainer.classList.remove('active')
-        displayGameBoard(); 
-        playGame();
-    })
-
     const newGameBtn = document.querySelector('#new-game')
     newGameBtn.addEventListener('click', () => {
         location.reload();
     })
+    const restartBtn = document.querySelector('#restart-btn')
+    restartBtn.addEventListener('click', () => {
+        winnerDisplay.classList.toggle('active')
+        boardContainer.classList.remove('active')
+        displayGameBoard(); 
+    })
 
-    const clearGameBoardObject = () => {
-        gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
-    }
-
-    const clearGameBoard = () => {
-        while (boardContainer.firstChild) {
-            boardContainer.removeChild(boardContainer.firstChild)
-        }
-    }
-
+    //Winner Displays:
     const winnerDisplay = document.querySelector('.winner-display')
     const winnerText = document.querySelector('.winner')
 
@@ -119,61 +122,20 @@ const displayGame = (() => {
         winnerText.textContent = `${player1} and ${player2}, its a tie! Next time someone better to win!`
     }
 
-    return {playerWon, playerTie}
-})();
-
-const gameFlowControl = (() => { 
-    const board = document.querySelectorAll('div.box')
-    const playerOneDisplay = document.querySelector('.player-1')
-    const playerTwoDisplay = document.querySelector('.player-2')
-
-    const createPlayers = () => {
-        let playerOneName = document.getElementById('player1').value
-        let playerOneSym = 'X'
-        let playerOne = Players(playerOneName, playerOneSym);
-    
-        let playerTwoName = document.getElementById('player2').value
-        let playerTwoSym = 'O'
-        let playerTwo = Players(playerTwoName, playerTwoSym);
-
-        playerOneDisplay.textContent = `${playerOneName} : X`
-        playerTwoDisplay.textContent = `${playerTwoName} : O`
-        playerOneDisplay.classList.add('active')
-        playerTwoDisplay.classList.remove('active')
-    }
-
-    board.forEach(div => {
-        div.addEventListener('click', () => {
-            if (playerWin) {
-                return
-            }
-            if (inPlay === playerOne.getName() && getLocation(div.dataset.boxNumber) === '') {
-                placeSpot(playerOne, div.dataset.boxNumber, div)
-                    inPlay = playerTwo.getName();
-                    playerHighlightTwo();
-                    checkWinner();
-                    checkTie();
-                } else if (inPlay === playerTwo.getName() && getLocation(div.dataset.boxNumber) === '') {
-                    placeSpot(playerTwo, div.dataset.boxNumber, div)
-                    inPlay = playerOne.getName();
-                    playerHighlightOne();
-                    checkWinner();
-                    checkTie();
-                }
-            })
-        });
-    
-    const placeSpot = (player, spot, div) => {
-        let symbol = player.getSymbol();
-        div.textContent = symbol
-        gameBoard.gameBoardObject[spot] = symbol
-    }
-
-    
     return {
-        createPlayers
+        playerWon,
+        playerTie
     }
 })();
+
+const displayGame = () => {
+    //After gameboard displays commands
+    const clearGameBoardObject = () => {
+        gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
+    }
+
+};
+
 
 
 const playGame = () => {
