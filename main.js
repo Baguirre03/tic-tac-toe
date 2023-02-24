@@ -30,7 +30,7 @@ const gameFlowController = (() => {
                 if (inPlay === playerOneName && getLocation(div.dataset.boxNumber) === '') {
                     placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
                     inPlay = playerTwoName
-                    DomController.playerHighlightOne()
+                    DomController.playerHighlightTwo()
                     DomController.updatePlay(div.dataset.boxNumber)
                     checkTie();
                     checkWinner();
@@ -74,10 +74,12 @@ const gameFlowController = (() => {
                 playerWin = true;
                 DomController.playerWon(playerOne.getName(), playerTwo.getName());
                 clearGameBoardObject();
+                DomController.playerHighlightOne();
             } else if (winnerCombs[property].toString() === checkO) {
                 playerWin = true;
                 DomController.playerWon(playerTwo.getName(), playerOne.getName());
                 clearGameBoardObject();
+                DomController.playerHighlightOne();
             }
         }
     }
@@ -210,8 +212,12 @@ const DomController = (() => {
 
     //highlight upper names
     const playerHighlightOne = () => {
-        playerTwoDisplay.classList.toggle('active')
-        playerOneDisplay.classList.toggle('active')
+        playerTwoDisplay.classList.remove('active')
+        playerOneDisplay.classList.add('active')
+    }
+    const playerHighlightTwo = () => {
+        playerOneDisplay.classList.remove('active')
+        playerTwoDisplay.classList.add('active')
     }
 
     return {
@@ -219,6 +225,7 @@ const DomController = (() => {
         playerTie,
         changeNames,
         playerHighlightOne,
+        playerHighlightTwo,
         updatePlay
     }
 })();
