@@ -13,32 +13,37 @@ const gameFlowController = (() => {
     let playerWin = false
     const getLocation = (location) => gameBoardObject[location];
     
-    
     const playerOne = Players('Player1', 'X')
-    const playerTwo = Players('Player2', '0')
+    const playerTwo = Players('Player2', 'O')
     
     let inPlay = playerOne.getName();
     const playerOneName = playerOne.getName();
-    const playerTwoName = playerTwo.getName()
+    const playerTwoName = playerTwo.getName();
     
     const boardBegin = () => {
         const board = document.querySelectorAll('div.box')
-            board.forEach((div) => {
-                div.addEventListener('click', () => {
-                    if (playerWin) {
-                        return
-                    }
-                    if (inPlay === playerOneName && getLocation(div.dataset.boxNumber) === '') {
-                        placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
-                        inPlay = playerTwoName
-                        console.log(gameBoardObject)
-                    } else if (inPlay === playerTwoName && getLocation(div.dataset.boxNumber) === '' ) {
-                        placeSpot(playerTwo.getSymbol(), div.dataset.boxNumber)
-                        inPlay = playerOneName
-                        console.log(gameBoardObject)
-                    }
-                })
-            })   
+        board.forEach((div) => {
+            div.addEventListener('click', () => {
+                if (playerWin) {
+                    return
+                }
+                if (inPlay === playerOneName && getLocation(div.dataset.boxNumber) === '') {
+                    placeSpot(playerOne.getSymbol(), div.dataset.boxNumber)
+                    inPlay = playerTwoName
+                    DomController.playerHighlightOne()
+                    DomController.updatePlay(div.dataset.boxNumber)
+                    checkTie();
+                    checkWinner();
+                } else if (inPlay === playerTwoName && getLocation(div.dataset.boxNumber) === '' ) {
+                    placeSpot(playerTwo.getSymbol(), div.dataset.boxNumber)
+                    inPlay = playerOneName
+                    DomController.playerHighlightOne()
+                    DomController.updatePlay(div.dataset.boxNumber)
+                    checkTie();
+                    checkWinner();
+                }
+            })
+        })   
     }
 
     const placeSpot = (symbol, spot) => {
@@ -46,7 +51,7 @@ const gameFlowController = (() => {
     }
     
     const clearGameBoardObject = () => {
-        gameBoard.gameBoardObject = ['', '', '', '', '','','','','',]
+        gameBoardObject = ['', '', '', '', '','','','','',]
     }
 
     const checkWinner = () => {
@@ -68,9 +73,11 @@ const gameFlowController = (() => {
             if (winnerCombs[property].toString() === checkX) {
                 playerWin = true;
                 DomController.playerWon(playerOne.getName(), playerTwo.getName());
+                clearGameBoardObject();
             } else if (winnerCombs[property].toString() === checkO) {
                 playerWin = true;
                 DomController.playerWon(playerTwo.getName(), playerOne.getName());
+                clearGameBoardObject();
             }
         }
     }
@@ -78,17 +85,18 @@ const gameFlowController = (() => {
     const checkTie = () => {
         const fullArray = (array) => {return array != ''}
         if (gameBoardObject.every(fullArray)) {
-            displayGame.playerTie(playerOne.getName(), playerTwo.getName())
+            DomController.playerTie(playerOne.getName(), playerTwo.getName())
         }
     }
 
     return {
         boardBegin,
+        getLocation
     }
 })();
 
 const DomController = (() => {
-    let board = document.querySelectorAll('div.box')
+    // let board = document.querySelectorAll('div.box')
     let boardContainer = document.querySelector('.game-board')
 
     const formDiv = document.querySelector('.form-container')
@@ -120,6 +128,7 @@ const DomController = (() => {
         for (i = 0; i < 9; i++) {
             let div = document.createElement('div')
             div.dataset.boxNumber = i;
+            div.id = i;
             div.classList.add('box')
             boardContainer.appendChild(div)
         }
@@ -147,16 +156,13 @@ const DomController = (() => {
 
     const changeNames = () => {
         playerOneDisplay.textContent = `${input1.value} : X`
-        playerTwoDisplay.textContent = `${input2.value} : X`
+        playerTwoDisplay.textContent = `${input2.value} : O`
     }
 
     //Update DOM for spot play
-    const updatePlay = () => {
-        board.forEach((div) => {
-            div.addEventListener('click', (player) => {
-                div.textContent = player.getSymbol()
-            })
-        })
+    const updatePlay = (spot) => {
+        let selectedBox = document.getElementById(spot)
+        selectedBox.textContent = gameFlowController.getLocation(spot)
     }
 
     //BOT commands
@@ -202,24 +208,17 @@ const DomController = (() => {
         winnerText.textContent = `${player1} and ${player2}, its a tie! Next time someone better to win!`
     }
 
-    return {
-        playerWon,
-        playerTie,
-        updatePlay,
-        changeNames
-    }
-})();
-
-
-const playGame = () => {
+    //highlight upper names
     const playerHighlightOne = () => {
         playerTwoDisplay.classList.toggle('active')
         playerOneDisplay.classList.toggle('active')
     }
-    const playerHighlightTwo = () => {
-        playerOneDisplay.classList.toggle('active')
-        playerTwoDisplay.classList.toggle('active')
+
+    return {
+        playerWon,
+        playerTie,
+        changeNames,
+        playerHighlightOne,
+        updatePlay
     }
-    
-    return {}
-};
+})();
