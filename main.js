@@ -91,6 +91,10 @@ const gameFlowController = (() => {
     const fullArray = (array) => array != "";
     if (gameBoardObject.every(fullArray)) {
       DomController.playerTie(DomController.input1.value, DomController.input2.value);
+      playerWin = true;
+      clearGameBoardObject();
+      DomController.playerHighlightOne();
+      inPlay = playerOneName
     }
   };
 
