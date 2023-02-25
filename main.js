@@ -72,12 +72,12 @@ const gameFlowController = (() => {
     for (const property in winnerCombs) {
       if (winnerCombs[property].toString() === checkX) {
         playerWin = true;
-        DomController.playerWon(playerOne.getName(), playerTwo.getName());
+        DomController.playerWon(DomController.input1.value, DomController.input2.value);
         clearGameBoardObject();
         DomController.playerHighlightOne();
       } else if (winnerCombs[property].toString() === checkO) {
         playerWin = true;
-        DomController.playerWon(playerTwo.getName(), playerOne.getName());
+        DomController.playerWon(DomController.input2.value, DomController.input1.value);
         clearGameBoardObject();
         DomController.playerHighlightOne();
       }
@@ -98,7 +98,6 @@ const gameFlowController = (() => {
 })();
 
 const DomController = (() => {
-  // let board = document.querySelectorAll('div.box')
   const boardContainer = document.querySelector(".game-board");
 
   const formDiv = document.querySelector(".form-container");
@@ -227,5 +226,7 @@ const DomController = (() => {
     playerHighlightOne,
     playerHighlightTwo,
     updatePlay,
+    input1,
+    input2
   };
 })();
