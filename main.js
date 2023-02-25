@@ -21,6 +21,7 @@ const gameFlowController = (() => {
   const playerTwoName = playerTwo.getName();
 
   const boardBegin = () => {
+    playerWin = false
     const board = document.querySelectorAll("div.box");
     board.forEach((div) => {
       div.addEventListener("click", () => {
@@ -75,11 +76,13 @@ const gameFlowController = (() => {
         DomController.playerWon(DomController.input1.value, DomController.input2.value);
         clearGameBoardObject();
         DomController.playerHighlightOne();
+        inPlay = playerOneName
       } else if (winnerCombs[property].toString() === checkO) {
         playerWin = true;
         DomController.playerWon(DomController.input2.value, DomController.input1.value);
         clearGameBoardObject();
         DomController.playerHighlightOne();
+        inPlay = playerOneName
       }
     }
   };
