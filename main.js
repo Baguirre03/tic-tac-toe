@@ -33,15 +33,15 @@ const gameFlowController = (() => {
           inPlay = playerTwoName;
           DomController.playerHighlightTwo();
           DomController.updatePlay(div.dataset.boxNumber);
-          checkTie();
           checkWinner();
+          checkTie();
         } else if (inPlay === playerTwoName && getLocation(div.dataset.boxNumber) === "") {
           placeSpot(playerTwo.getSymbol(), div.dataset.boxNumber);
           inPlay = playerOneName;
           DomController.playerHighlightOne();
           DomController.updatePlay(div.dataset.boxNumber);
-          checkTie();
           checkWinner();
+          checkTie();
         }
       });
     });
@@ -90,7 +90,7 @@ const gameFlowController = (() => {
   const checkTie = () => {
     const fullArray = (array) => array != "";
     if (gameBoardObject.every(fullArray)) {
-      DomController.playerTie(playerOne.getName(), playerTwo.getName());
+      DomController.playerTie(DomController.input1.value, DomController.input2.value);
     }
   };
 
